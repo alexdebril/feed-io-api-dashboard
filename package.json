@@ -1,0 +1,19 @@
+{
+  "name": "feed-io-dashboard",
+  "version": "0.1.0",
+  "description": "Dashboard for data provided by api.feed-io.net",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexdebril/feed-io-dashboard.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexdebril/feed-io-dashboard/issues"
+  },
+  "homepage": "https://github.com/alexdebril/feed-io-dashboard#readme"
+}
