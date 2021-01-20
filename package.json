@@ -18,5 +18,8 @@
   "homepage": "https://github.com/alexdebril/feed-io-dashboard#readme",
   "dependencies": {
     "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "webpack": "^5.16.0"
   }
 }
