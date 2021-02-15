@@ -1,0 +1,62 @@
+version: '3.2'
+
+services:
+
+  nginx:
+    depends_on:
+      - fpm
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - api:/var/www/html/public:ro
+      - './nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
+      - .:/var/www/dashboard
+
+  fpm:
+    image: alexdebril/feed-io-api-fpm:latest
+    env_file: config.env
+    links:
+      - redis
+      - mongo
+    volumes:
+      - api:/var/www/html/public
+
+  ws:
+    image: alexdebril/feed-io-api-ws:latest
+
+  consumer:
+    image: alexdebril/feed-io-api-cli:latest
+    restart: always
+    command: "./bin/console messenger:consume async-new-feed -vv"
+    env_file: config.env
+    links:
+      - redis
+      - mongo
+
+  updater:
+    image: alexdebril/feed-io-api-cli:latest
+    restart: always
+    command: "./bin/console app:update -vv"
+    env_file: config.env
+    links:
+      - mongo
+      - ws
+
+  mongo:
+    image: mongo
+    hostname: mongo
+    environment:
+      MONGO_INITDB_DATABASE: feedio_api
+    volumes:
+      - ./init.js:/docker-entrypoint-initdb.d/init.js
+      - './data/db:/data/db'
+
+  redis:
+    image: redis
+    hostname: redis
+    volumes:
+      - './data/redis:/data'
+
+volumes:
+  api:
