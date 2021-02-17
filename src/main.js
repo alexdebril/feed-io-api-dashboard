@@ -13,9 +13,23 @@ function getList() {
         })
 }
 
-getList();
+const evtSource = new EventSource("//ws.localhost");
 
-const evtSource = new EventSource("http://ws.localhost");
-evtSource.onmessage = function(event) {
-    console.log(event);
+evtSource.addEventListener("item", function(event) {
+    console.log("new item")
+    console.log(event.data)
+    const eventList = document.getElementById("list");
+    const newElement = document.createElement("li");
+    const title = JSON.parse(event.data).title;
+    newElement.textContent = "title: " + title;
+    eventList.appendChild(newElement);
+  });
+
+evtSource.onopen = function(status) {
+    console.log(status);
+}
+
+evtSource.onerror = function(status) {
+    console.log("error detected");
+    console.log(status);
 }
