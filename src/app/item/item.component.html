@@ -1,2 +1,6 @@
 <h2>item list</h2>
-<ul></ul>
+<ul>
+    <li *ngFor="let item of items">
+        <span class="badge">{{item.title}}</span> {{item.url}}
+    </li>
+</ul>
