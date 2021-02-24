@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../item';
 import { ItemReader } from './reader';
 import { Subscriber } from './subscriber';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-item',
@@ -11,11 +12,14 @@ import { Subscriber } from './subscriber';
 export class ItemComponent implements OnInit, Subscriber {
 
   items: Item[] = [];
+  websocketUrl: string;
 
-  constructor() { }
+  constructor() {
+    this.websocketUrl = environment.urlWebsocket
+  }
 
   ngOnInit(): void {
-    const reader = new ItemReader('//ws.localhost');
+    const reader = new ItemReader(this.websocketUrl);
     reader.connect();
     reader.listen(this);
   }
