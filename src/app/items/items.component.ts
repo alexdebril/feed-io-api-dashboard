@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../item';
-import { ItemReader } from './reader';
-import { Subscriber } from './subscriber';
+import { ItemReader } from '../items/reader';
+import { Subscriber } from '../items/subscriber';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  selector: 'app-items',
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.css']
 })
-export class ItemComponent implements OnInit, Subscriber {
+export class ItemsComponent implements OnInit, Subscriber {
 
   items: Item[] = [];
   websocketUrl: string;
