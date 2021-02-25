@@ -16,7 +16,9 @@ export class FeedsComponent implements OnInit {
 
   ngOnInit(): void {
     fetch(this.apiUrl + '/feed/list').then(value => {
-      console.log(value);
+      return value.json();
+    }).then(json => {
+      console.log(json);
     });
   }
 
