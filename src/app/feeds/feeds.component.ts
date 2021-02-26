@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { FeedsApi } from '../FeedsApi';
+import { Feed } from '../Feed';
 
 @Component({
   selector: 'app-feeds',
@@ -9,21 +11,19 @@ import { environment } from '../../environments/environment';
 export class FeedsComponent implements OnInit {
 
   apiUrl: string;
+  feeds: Feed[] = [];
 
   constructor() {
     this.apiUrl = environment.urlApi;
   }
 
   ngOnInit(): void {
-
+    const api = new FeedsApi(this.apiUrl);
+    this.feeds = api.list(0, 10);
   }
 
   fetch(): void {
-    fetch(this.apiUrl + '/feed/list').then(value => {
-      return value.json();
-    }).then(json => {
-      console.log(json);
-    });
+
   }
 
 }

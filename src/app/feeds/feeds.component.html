@@ -1,1 +1,6 @@
-<p>feeds works!</p>
+<h2>feeds list</h2>
+<ul>
+  <li *ngFor="let feed of feeds">
+    <span class="badge">{{feed.title}}</span> {{feed.url}}
+  </li>
+</ul>
