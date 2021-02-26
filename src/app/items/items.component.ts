@@ -15,7 +15,7 @@ export class ItemsComponent implements OnInit, Subscriber {
   websocketUrl: string;
 
   constructor() {
-    this.websocketUrl = environment.urlWebsocket
+    this.websocketUrl = environment.urlWebsocket;
   }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
-import { Item } from "../item";
+import { Item } from '../item';
 
 export interface Subscriber {
-    notify(item : Item): void;
+    notify(item: Item): void;
 }
