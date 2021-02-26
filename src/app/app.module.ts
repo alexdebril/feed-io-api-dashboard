@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ItemsComponent } from './items/items.component';
+import { FeedsComponent } from './feeds/feeds.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FeedsComponent,
     ItemsComponent
   ],
   imports: [
