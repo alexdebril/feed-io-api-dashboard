@@ -19,13 +19,13 @@ describe('AppComponent', () => {
   it(`should have as title 'dashboard'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('dashboard');
+    expect(app.title).toEqual('feed-io\'s API dashboard');
   });
 
-  it('should render title', () => {
+  it('should render nav', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('dashboard app is running!');
+    expect(compiled.querySelector('nav a').textContent).toContain('items');
   });
 });
