@@ -12,6 +12,7 @@ export class FeedsComponent implements OnInit {
 
   apiUrl: string;
   feeds: Feed[] = [];
+  selectedFeed?: Feed;
 
   constructor() {
     this.apiUrl = environment.urlApi;
@@ -22,8 +23,8 @@ export class FeedsComponent implements OnInit {
     this.feeds = api.list(0, 10);
   }
 
-  fetch(): void {
-
+  select(feed: Feed): void {
+    this.selectedFeed = feed;
   }
 
 }

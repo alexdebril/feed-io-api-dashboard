@@ -1,6 +1,11 @@
 <h2>feeds list</h2>
 <ul>
   <li *ngFor="let feed of feeds">
-    <span class="badge">{{feed.title}}</span> {{feed.url}}
+    <span class="badge" (click)="select(feed)">{{feed.title}}</span> {{feed.url}}
   </li>
 </ul>
+
+<div *ngIf="selectedFeed">
+<h2>{{selectedFeed.title}}</h2>
+  <h3>{{selectedFeed.slug}}</h3>
+</div>
