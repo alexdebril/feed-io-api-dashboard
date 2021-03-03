@@ -8,4 +8,5 @@
 <div *ngIf="selectedFeed">
 <h2>{{selectedFeed.title}}</h2>
   <h3>{{selectedFeed.slug}}</h3>
+  <a routerLink="/results/{{selectedFeed.slug}}">view results</a>
 </div>
