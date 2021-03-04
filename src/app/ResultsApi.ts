@@ -13,7 +13,7 @@ export class ResultsApi {
       return value.json();
     }).then(json => {
       for (const element of json) {
-        const result = new Result(element.statusCode, element.itemCount, element.duration);
+        const result = new Result(element.eventDate, element.statusCode, element.itemCount, element.duration);
         results.push(result);
       }
     });

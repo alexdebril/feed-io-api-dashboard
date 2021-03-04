@@ -1,1 +1,18 @@
-<p>results works!</p>
+<table>
+  <thead>
+  <tr>
+    <th>date</th>
+    <th>status code</th>
+    <th>items</th>
+    <th>duration</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let result of results">
+    <td>{{result.eventDate}}</td>
+    <td>{{result.statusCode}}</td>
+    <td>{{result.itemCount}}</td>
+    <td>{{result.duration}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -1,7 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
-import { environment } from '../../environments/environment';
-import { ResultsApi } from '../ResultsApi';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
+import { ResultsApi } from '../ResultsApi';
+import {Result} from '../Result';
 
 @Component({
   selector: 'app-results',
@@ -11,6 +12,8 @@ import { Component, OnInit } from '@angular/core';
 export class ResultsComponent implements OnInit {
 
   apiUrl: string;
+  results: Result[] = [];
+
   constructor(private route: ActivatedRoute) {
     this.apiUrl = environment.urlApi;
   }
@@ -22,10 +25,8 @@ export class ResultsComponent implements OnInit {
   getResults(): void {
     const api = new ResultsApi(this.apiUrl);
     const slug = this.route.snapshot.paramMap.get('slug');
-    console.log(slug);
     if (typeof slug === 'string') {
-      const results = api.list(slug);
-      console.log(results);
+      this.results = api.list(slug);
     }
   }
 }
