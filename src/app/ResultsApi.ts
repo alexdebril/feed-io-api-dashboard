@@ -9,10 +9,10 @@ export class ResultsApi {
 
   list(slug: string): Result[] {
     const results: Result[] = [];
-    fetch(`${this.url}/result/list/${slug}`).then(value => {
+    fetch(`${this.url}/results/list/${slug}`).then(value => {
       return value.json();
     }).then(json => {
-      for (const element of json) {
+      for (const element of json.results) {
         const result = new Result(element.eventDate, element.statusCode, element.itemCount, element.duration);
         results.push(result);
       }
