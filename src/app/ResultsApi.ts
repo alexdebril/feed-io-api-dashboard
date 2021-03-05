@@ -9,7 +9,7 @@ export class ResultsApi {
 
   list(slug: string): Result[] {
     const results: Result[] = [];
-    fetch(`${this.url}/results/list/${slug}`).then(value => {
+    fetch(`${this.url}/results/list/${slug}`, {referrerPolicy: 'no-referrer'}).then(value => {
       return value.json();
     }).then(json => {
       for (const element of json.results) {
