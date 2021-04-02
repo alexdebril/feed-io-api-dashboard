@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  urlWebsocket: '//api.feed-io.net/ws',
-  urlApi: 'https://api.feed-io.net',
+  urlWebsocket: '//api.debril.ovh/ws',
+  urlApi: '//api.debril.ovh',
 };
