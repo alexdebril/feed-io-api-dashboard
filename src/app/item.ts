@@ -1,9 +1,10 @@
 export class Item {
-    title: string;
-    url: string;
-
-    constructor(title: string, url: string) {
-        this.title = title;
-        this.url = url;
+    constructor(
+      public title: string,
+      public url: string,
+      public feedName: string,
+      public feedUrl: string,
+      public lastModified: string
+    ) {
     }
 }
