@@ -9,7 +9,7 @@ export class FeedsApi {
 
   list(start: number, limit: number): Feed[] {
     const feeds: Feed[] = [];
-    fetch(`${this.url}/feed/list/${start}/${limit}`).then(value => {
+    fetch(`${this.url}/feeds/list/${start}/${limit}`, {referrerPolicy: 'no-referrer'}).then(value => {
       return value.json();
     }).then(json => {
       for (const element of json.feeds) {
