@@ -2,6 +2,6 @@
 <ul>
     <li *ngFor="let item of items">
         <span class="badge"><a href="{{item.url}}">{{item.lastModified}} : {{item.title}}</a></span><br>
-        <a href="{{item.feedUrl}}">{{item.feedName}}</a>
+        <a routerLink="/results/{{item.feedSlug}}">{{item.feedName}}</a>
     </li>
 </ul>

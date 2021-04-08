@@ -3,7 +3,7 @@ export class Item {
       public title: string,
       public url: string,
       public feedName: string,
-      public feedUrl: string,
+      public feedSlug: string,
       public lastModified: string
     ) {
     }
