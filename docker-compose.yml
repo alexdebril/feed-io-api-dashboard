@@ -3,38 +3,26 @@ version: '3.2'
 services:
 
   nginx:
-    depends_on:
-      - fpm
     image: nginx:alpine
     ports:
       - 80:80
     volumes:
-      - api:/var/www/html/public:ro
       - './nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
 
-  fpm:
-    image: alexdebril/feed-io-api-fpm:latest
-    env_file: config.env
+  api:
+    image: alexdebril/feed-io-platform-api:latest
     links:
-      - redis
       - mongo
-    volumes:
-      - api:/var/www/html/public
+    environment:
+      MONGO_HOST: mongo
+    depends_on:
+      - mongo
 
   ws:
     image: alexdebril/feed-io-api-ws:latest
 
-  consumer:
-    image: alexdebril/feed-io-api-cli:latest
-    restart: always
-    command: "./bin/console messenger:consume async-new-feed -vv"
-    env_file: config.env
-    links:
-      - redis
-      - mongo
-
   updater:
-    image: alexdebril/feed-io-api-cli:latest
+    image: alexdebril/feed-io-platform-core-updater:latest
     restart: always
     command: "./bin/console app:update -vv"
     env_file: config.env
@@ -50,12 +38,3 @@ services:
     volumes:
       - './data/db:/data/db'
 
-  redis:
-    image: redis
-    hostname: redis
-    command: redis-server --requirepass secretpass
-    volumes:
-      - './data/redis:/data'
-
-volumes:
-  api:
