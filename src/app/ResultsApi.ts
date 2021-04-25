@@ -9,10 +9,23 @@ export class ResultsApi {
 
   list(slug: string): Result[] {
     const results: Result[] = [];
-    fetch(`${this.url}/results/list/${slug}`, {referrerPolicy: 'no-referrer'}).then(value => {
+    const request = {
+      query: {
+        slug
+      },
+      options: {
+        start: 0,
+        limit: 20
+      }
+    };
+    fetch(`${this.url}/results`, {
+      referrerPolicy: 'no-referrer',
+      method: 'post',
+      body: JSON.stringify(request)
+    }).then(value => {
       return value.json();
     }).then(json => {
-      for (const element of json.results) {
+      for (const element of json.data.results) {
         const result = new Result(element.eventDate, element.statusCode, element.itemCount, element.duration);
         results.push(result);
       }
