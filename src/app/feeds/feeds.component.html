@@ -9,12 +9,12 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let feed of feeds">
-      <td><a (click)="select(feed)" href="javascript: return false;">{{feed.title}}</a></td>
-      <td>{{feed.url}}</td>
-      <td>{{feed.lastModified}}</td>
-      <td>{{feed.nextUpdate}}</td>
-    </tr>
+  <tr *ngFor="let feed of feeds">
+    <td><a (click)="select(feed)" href="javascript: return false;">{{feed.title}}</a></td>
+    <td>{{feed.url}}</td>
+    <td>{{feed.lastModified}}</td>
+    <td>{{feed.nextUpdate}}</td>
+  </tr>
   </tbody>
 </table>
 

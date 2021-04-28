@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ItemsComponent } from './items/items.component';
 import { FeedsComponent } from './feeds/feeds.component';
 import { ResultsComponent } from './results/results.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,11 @@ import { ResultsComponent } from './results/results.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [MatTableModule]
 })
 export class AppModule { }
