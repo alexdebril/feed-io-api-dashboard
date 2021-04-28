@@ -1,9 +1,28 @@
 <h2>feeds list</h2>
-<ul>
-  <li *ngFor="let feed of feeds">
-    <span class="badge" (click)="select(feed)">{{feed.title}}</span> {{feed.url}}
-  </li>
-</ul>
+<table>
+  <thead>
+  <tr>
+    <th>title</th>
+    <th>url</th>
+    <th>last modified</th>
+    <th>next update</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let feed of feeds">
+      <td><a (click)="select(feed)" href="javascript: return false;">{{feed.title}}</a></td>
+      <td>{{feed.url}}</td>
+      <td>{{feed.lastModified}}</td>
+      <td>{{feed.nextUpdate}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="pager">
+  <span *ngFor="let page of pages">
+    <a routerLink="/feeds/{{page}}">{{page}}</a>
+  </span>
+</div>
 
 <div *ngIf="selectedFeed">
 <h2>{{selectedFeed.title}}</h2>

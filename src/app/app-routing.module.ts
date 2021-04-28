@@ -6,7 +6,7 @@ import {ResultsComponent} from './results/results.component';
 
 const routes: Routes = [
   { path: 'items', component: ItemsComponent },
-  { path: 'feeds', component: FeedsComponent },
+  { path: 'feeds/:page', component: FeedsComponent },
   { path: 'results/:slug', component: ResultsComponent}
 ];
 

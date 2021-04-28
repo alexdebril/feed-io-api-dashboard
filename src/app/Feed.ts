@@ -5,6 +5,8 @@ export class Feed {
     public url: string,
     public slug: string,
     public language: string,
-    public status: string
+    public status: string,
+    public lastModified: Date,
+    public nextUpdate: Date,
   ) {}
 }
