@@ -1,19 +1,19 @@
 <h2>feeds list</h2>
-<table>
+<table mat-table class="mat-elevation-z8" style="width: 90%;">
   <thead>
-  <tr>
-    <th>title</th>
-    <th>url</th>
-    <th>last modified</th>
-    <th>next update</th>
+  <tr mat-header-row>
+    <th mat-header-cell>title</th>
+    <th mat-header-cell>url</th>
+    <th mat-header-cell>last modified</th>
+    <th mat-header-cell>next update</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let feed of feeds">
-    <td><a (click)="select(feed)" href="javascript: return false;">{{feed.title}}</a></td>
-    <td>{{feed.url}}</td>
-    <td>{{feed.lastModified}}</td>
-    <td>{{feed.nextUpdate}}</td>
+  <tr mat-row *ngFor="let feed of feeds">
+    <td mat-cell><a (click)="select(feed)" href="javascript: return false;">{{feed.title}}</a></td>
+    <td mat-cell>{{feed.url}}</td>
+    <td mat-cell>{{feed.lastModified}}</td>
+    <td mat-cell>{{feed.nextUpdate}}</td>
   </tr>
   </tbody>
 </table>
