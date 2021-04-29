@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../item';
-import { ItemReader } from '../items/reader';
-import { Subscriber } from '../items/subscriber';
+import { LiveItem } from '../LiveItem';
+import { ItemReader } from './reader';
+import { Subscriber } from './subscriber';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 })
 export class ItemsComponent implements OnInit, Subscriber {
 
-  items: Item[] = [];
+  items: LiveItem[] = [];
   websocketUrl: string;
 
   constructor() {
@@ -24,7 +24,7 @@ export class ItemsComponent implements OnInit, Subscriber {
     reader.listen(this);
   }
 
-  notify(item: Item): void {
+  notify(item: LiveItem): void {
     this.items.push(item);
   }
 

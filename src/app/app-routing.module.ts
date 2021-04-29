@@ -3,11 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { ItemsComponent } from './items/items.component';
 import { FeedsComponent } from './feeds/feeds.component';
 import {ResultsComponent} from './results/results.component';
+import {HomeComponent} from './home/home.component';
+import {NotfoundComponent} from './notfound/notfound.component';
 
 const routes: Routes = [
-  { path: 'items', component: ItemsComponent },
+  {path: '', component: HomeComponent},
+  { path: 'live', component: ItemsComponent },
   { path: 'feeds/:page', component: FeedsComponent },
-  { path: 'results/:slug', component: ResultsComponent}
+  { path: 'results/:slug', component: ResultsComponent},
+  {path: '**', component: NotfoundComponent},
 ];
 
 @NgModule({

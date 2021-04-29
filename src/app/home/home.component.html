@@ -1,0 +1,6 @@
+<h2>Last items</h2>
+<ul>
+  <li *ngFor="let item of items">
+    <span class="badge"><a href="{{item.link}}">{{item.lastModified}} {{item.title}}</a></span><br>
+  </li>
+</ul>

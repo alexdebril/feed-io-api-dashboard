@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { FeedsApi } from '../FeedsApi';
 import { Feed } from '../Feed';
+import {ItemsApi} from '../ItemsApi';
+import {Item} from '../Item';
 
 @Component({
   selector: 'app-feeds',
@@ -14,6 +16,7 @@ export class FeedsComponent implements OnInit {
   apiUrl: string;
   pages: number[] = [];
   feeds: Feed[] = [];
+  items: Item[] = [];
   selectedFeed?: Feed;
   defaultLimit: number;
 
@@ -31,15 +34,17 @@ export class FeedsComponent implements OnInit {
 
   async load(page: number): Promise<void> {
     const api = new FeedsApi(this.apiUrl);
-    // let page = parseInt(<string> this.route.snapshot.paramMap.get('page'), 10);
     const start = (page - 1) * this.defaultLimit;
     const feedResponse = await api.list(start, this.defaultLimit);
     this.feeds = feedResponse.feeds;
     this.buildPager(feedResponse.count);
   }
 
-  select(feed: Feed): void {
+  async select(feed: Feed): Promise<void> {
     this.selectedFeed = feed;
+    const api = new ItemsApi(this.apiUrl);
+    const itemResponse = await api.getFromFeed(feed.slug, 0, this.defaultLimit);
+    this.items = itemResponse.items;
   }
 
   buildPager(count: number): void {

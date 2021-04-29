@@ -27,5 +27,10 @@
 <div *ngIf="selectedFeed">
 <h2>{{selectedFeed.title}}</h2>
   <h3>{{selectedFeed.slug}}</h3>
+  <ul>
+    <li *ngFor="let item of items">
+      <span class="badge"><a href="{{item.link}}">{{item.lastModified}} {{item.title}}</a></span><br>
+    </li>
+  </ul>
   <a routerLink="/results/{{selectedFeed.slug}}">view results</a>
 </div>
