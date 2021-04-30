@@ -25,7 +25,7 @@ export class ItemReader {
                 console.log('new item');
                 console.log(event.data);
                 const jsonItem = JSON.parse(event.data);
-                const item = new LiveItem(jsonItem.title, jsonItem.url, jsonItem.feed_name, jsonItem.feed_slug, jsonItem.last_modified);
+                const item = new LiveItem(jsonItem.title, jsonItem.url, jsonItem.feed_name, jsonItem.feed_slug, jsonItem.fetched_time);
                 subscriber.notify(item);
             }
           });
