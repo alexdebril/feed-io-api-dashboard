@@ -45,6 +45,8 @@ export class ItemsApi {
           element.title,
           element.link,
           element.content,
+          element.feed.slug,
+          element.feed.title,
           element.lastModified
         );
         items.push(item);

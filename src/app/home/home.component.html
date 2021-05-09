@@ -1,7 +1,18 @@
-<h2>Last items</h2>
-<ul>
-  <li *ngFor="let item of items">
-    <span class="badge"><a href="{{item.link}}">{{item.lastModified}} {{item.title}}</a></span><br>
-  </li>
-</ul>
 <h3>{{count}} items in database</h3>
+
+<div class="grid-container">
+  <mat-grid-list cols="1" rowHeight="100px">
+    <mat-grid-tile colspan="1" *ngFor="let item of items">
+      <mat-card class="dashboard-card" style="width: 95%">
+        <mat-card-header>
+          <mat-card-title>
+           {{item.feedTitle}}: {{item.title}}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-subtitle class="dashboard-card-subtitle">
+          <p>published on {{item.lastModified}}. <a href="{{item.link}}">link</a></p>
+        </mat-card-subtitle>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
