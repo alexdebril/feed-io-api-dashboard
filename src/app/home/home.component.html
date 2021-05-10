@@ -1,6 +1,16 @@
 <h3>{{count}} items in database</h3>
 
 <div class="grid-container">
+  <div id="search">
+    <form (submit)="search()">
+      <select [(ngModel)]="language" name="lang">
+        <option value="en">English</option>
+        <option value="fr">French</option>
+      </select>
+      <input id="search-token" [(ngModel)]="searchToken" placeholder="search" name="token">
+      <input id="run" type="button" (click)="search()" value="search">
+    </form>
+  </div>
   <mat-grid-list cols="1" rowHeight="100px">
     <mat-grid-tile colspan="1" *ngFor="let item of items">
       <mat-card class="dashboard-card" style="width: 95%">

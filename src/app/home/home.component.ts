@@ -13,15 +13,26 @@ export class HomeComponent implements OnInit {
   apiUrl: string;
   items: Item[] = [];
   count: number;
+  searchToken: string;
+  language: string;
 
   constructor() {
     this.apiUrl = environment.urlApi;
     this.count = 0;
+    this.searchToken = '';
+    this.language = 'en';
   }
 
   async ngOnInit(): Promise<void> {
     const api = new ItemsApi(this.apiUrl);
     const itemResponse = await api.list(0, 20);
+    this.items = itemResponse.items;
+    this.count = itemResponse.count;
+  }
+
+  async search(): Promise<void> {
+    const api = new ItemsApi(this.apiUrl);
+    const itemResponse = await api.search(this.searchToken, this.language, 0, 20);
     this.items = itemResponse.items;
     this.count = itemResponse.count;
   }

@@ -22,6 +22,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { LiveComponent } from './live/live.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { LiveComponent } from './live/live.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -8,6 +8,20 @@ export class ItemsApi {
     this.url = url;
   }
 
+  async search(search: string, language: string, start: number, limit: number): Promise<ItemResponse> {
+    const request = {
+      query: {
+        content: search,
+        language
+      },
+      options: {
+        start,
+        limit
+      }
+    };
+    return this.fetchResult(request);
+  }
+
   async list(start: number, limit: number): Promise<ItemResponse> {
     const request = {
       options: {
@@ -41,23 +55,25 @@ export class ItemsApi {
     }).then(value => {
       return value.json();
     }).then(json => {
-      for (const element of json.data.items) {
-        const feed = new Feed(
-          element.feed.title,
-          element.feed.url,
-          element.feed.slug,
-          undefined, undefined, undefined, undefined
-        );
-        const item = new Item(
-          element.title,
-          element.link,
-          element.content,
-          element.lastModified,
-          element.feed = feed
-        );
-        items.push(item);
+      if (json.data.items != null) {
+        for (const element of json.data.items) {
+          const feed = new Feed(
+            element.feed.title,
+            element.feed.url,
+            element.feed.slug,
+            undefined, undefined, undefined, undefined
+          );
+          const item = new Item(
+            element.title,
+            element.link,
+            element.content,
+            element.lastModified,
+            element.feed = feed
+          );
+          items.push(item);
+        }
+        count = json.data.count;
       }
-      count = json.data.count;
     });
     return new ItemResponse(items, count);
   }
