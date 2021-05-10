@@ -4,9 +4,9 @@ export class Feed {
     public title: string,
     public url: string,
     public slug: string,
-    public language: string,
-    public status: string,
-    public lastModified: Date,
-    public nextUpdate: Date,
+    public language: string | undefined,
+    public status: string | undefined,
+    public lastModified: Date | undefined,
+    public nextUpdate: Date | undefined,
   ) {}
 }

@@ -1,3 +1,4 @@
+import { Feed } from './Feed';
 import { Item } from './Item';
 
 export class ItemsApi {
@@ -41,13 +42,18 @@ export class ItemsApi {
       return value.json();
     }).then(json => {
       for (const element of json.data.items) {
+        const feed = new Feed(
+          element.feed.title,
+          element.feed.url,
+          element.feed.slug,
+          undefined, undefined, undefined, undefined
+        );
         const item = new Item(
           element.title,
           element.link,
           element.content,
-          element.feed.slug,
-          element.feed.title,
-          element.lastModified
+          element.lastModified,
+          element.feed = feed
         );
         items.push(item);
       }

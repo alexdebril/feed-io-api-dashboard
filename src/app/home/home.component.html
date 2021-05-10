@@ -4,14 +4,7 @@
   <mat-grid-list cols="1" rowHeight="100px">
     <mat-grid-tile colspan="1" *ngFor="let item of items">
       <mat-card class="dashboard-card" style="width: 95%">
-        <mat-card-header>
-          <mat-card-title>
-           {{item.feedTitle}}: {{item.title}}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-subtitle class="dashboard-card-subtitle">
-          <p>published on {{item.lastModified}}. <a href="{{item.link}}">link</a></p>
-        </mat-card-subtitle>
+        <p><b>{{item.title}}</b>{{item.feed.title}} {{item.lastModified}}</p>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
