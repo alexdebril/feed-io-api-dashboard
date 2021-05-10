@@ -1,4 +1,5 @@
 <div>
-  <span class="badge"><a href="{{item.url}}">{{item.lastModified}} : {{item.title}}</a></span><br>
-  <a routerLink="/results/{{item.feedSlug}}">{{item.feedName}}</a>
+  <mat-card class="dashboard-card" style="width: 95%">
+    <p><b>{{item.title}}</b>{{item.feedName}} {{item.lastModified}}</p>
+  </mat-card>
 </div>
