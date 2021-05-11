@@ -6,6 +6,7 @@ export class Item {
       public link: string,
       public content: string,
       public lastModified: Date,
+      public id: string,
       public feed: Feed
     ) {
     }

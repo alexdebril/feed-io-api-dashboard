@@ -68,6 +68,7 @@ export class ItemsApi {
             element.link,
             element.content,
             element.lastModified,
+            element.Id,
             element.feed = feed
           );
           items.push(item);
@@ -76,6 +77,21 @@ export class ItemsApi {
       }
     });
     return new ItemResponse(items, count);
+  }
+
+  async getContent(item: Item): Promise<string> {
+    let content = '';
+    await fetch(`${this.url}/items?id=${item.id}`, {
+      referrerPolicy: 'no-referrer',
+    }).then(value => {
+      return value.json();
+    }).then(json => {
+      if (json.data.item != null) {
+        content = json.data.item.content;
+        console.log(json.data.item);
+      }
+    });
+    return content;
   }
 
 }

@@ -19,10 +19,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { LiveComponent } from './live/live.component';
 import {FormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import {FormsModule} from '@angular/forms';
     MatIconModule,
     MatListModule,
     MatGridListModule,
+    MatExpansionModule,
     MatCardModule,
     MatMenuModule,
     FormsModule,
