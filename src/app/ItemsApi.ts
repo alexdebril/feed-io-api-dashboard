@@ -79,8 +79,7 @@ export class ItemsApi {
     return new ItemResponse(items, count);
   }
 
-  async getContent(item: Item): Promise<string> {
-    let content = '';
+  async getContent(item: Item): Promise<void> {
     await fetch(`${this.url}/items?id=${item.id}`, {
       referrerPolicy: 'no-referrer',
     }).then(value => {
@@ -91,7 +90,6 @@ export class ItemsApi {
         console.log(json.data.item);
       }
     });
-    return content;
   }
 
 }
