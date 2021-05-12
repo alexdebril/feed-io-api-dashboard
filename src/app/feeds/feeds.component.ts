@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FeedsApi } from '../FeedsApi';
 import { Feed } from '../Feed';
 import {Item} from '../Item';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-feeds',
@@ -13,38 +14,35 @@ import {Item} from '../Item';
 export class FeedsComponent implements OnInit {
 
   apiUrl: string;
+  count: number;
+  pageSize: number;
+  pageIndex: number;
   pages: number[] = [];
   feeds: Feed[] = [];
   items: Item[] = [];
   selectedFeed?: Feed;
-  defaultLimit: number;
 
   constructor(private route: ActivatedRoute) {
     this.apiUrl = environment.urlApi;
-    this.defaultLimit = 10;
+    this.count = 0;
+    this.pageIndex = 0;
+    this.pageSize = 20;
   }
 
   async ngOnInit(): Promise<void> {
-    this.route.paramMap.subscribe(params => {
-      const page = parseInt(params.get('page') as string, 10);
-      this.load(page);
-    });
+    return this.load();
   }
 
-  async load(page: number): Promise<void> {
+  async paginate(pageEvent: PageEvent): Promise<void> {
+    this.pageIndex = pageEvent.pageIndex;
+    return this.load();
+  }
+
+  async load(): Promise<void> {
     const api = new FeedsApi(this.apiUrl);
-    const start = (page - 1) * this.defaultLimit;
-    const feedResponse = await api.list(start, this.defaultLimit);
+    const feedResponse = await api.list(this.pageIndex * this.pageSize, this.pageSize);
     this.feeds = feedResponse.feeds;
-    this.buildPager(feedResponse.count);
-  }
-
-  buildPager(count: number): void {
-    const n = Math.ceil(count / this.defaultLimit);
-    this.pages = [];
-    for (let i = 1; i <= n; i++) {
-      this.pages.push(i);
-    }
+    this.count = feedResponse.count;
   }
 
 }

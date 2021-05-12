@@ -4,6 +4,7 @@
   <tr mat-header-row>
     <th mat-header-cell>title</th>
     <th mat-header-cell>url</th>
+    <th>results</th>
     <th mat-header-cell>last modified</th>
     <th mat-header-cell>next update</th>
   </tr>
@@ -12,25 +13,10 @@
   <tr mat-row *ngFor="let feed of feeds">
     <td mat-cell><a routerLink="/feed/{{feed.slug}}">{{feed.title}}</a></td>
     <td mat-cell>{{feed.url}}</td>
+    <td mat-cell><a routerLink="/results/{{feed.slug}}">view results</a></td>
     <td mat-cell>{{feed.lastModified}}</td>
     <td mat-cell>{{feed.nextUpdate}}</td>
   </tr>
   </tbody>
 </table>
-
-<div class="pager">
-  <span *ngFor="let page of pages">
-    <a routerLink="/feeds/{{page}}">{{page}}</a>
-  </span>
-</div>
-
-<div *ngIf="selectedFeed">
-<h2>{{selectedFeed.title}}</h2>
-  <h3>{{selectedFeed.slug}}</h3>
-  <ul>
-    <li *ngFor="let item of items">
-      <span class="badge"><a href="{{item.link}}">{{item.lastModified}} {{item.title}}</a></span><br>
-    </li>
-  </ul>
-  <a routerLink="/results/{{selectedFeed.slug}}">view results</a>
-</div>
+<mat-paginator [length]="count" [pageSize]="pageSize" (page)="paginate($event)"></mat-paginator>
