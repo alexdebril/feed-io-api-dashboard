@@ -5,6 +5,7 @@ import { FeedsApi } from '../FeedsApi';
 import { Feed } from '../Feed';
 import {ItemsApi} from '../ItemsApi';
 import {Item} from '../Item';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-feed',
@@ -15,6 +16,8 @@ export class FeedComponent implements OnInit {
 
   apiUrl: string;
   count: number;
+  pageSize: number;
+  pageIndex: number;
   searchToken: string;
   feed: Feed | undefined;
   items: Item[] = [];
@@ -22,11 +25,18 @@ export class FeedComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
     this.apiUrl = environment.urlApi;
     this.count = 0;
+    this.pageIndex = 0;
+    this.pageSize = 20;
     this.searchToken = '';
   }
 
   async ngOnInit(): Promise<void> {
     await this.getFeed();
+  }
+
+  async paginate(event: PageEvent): Promise<void> {
+    this.pageIndex = event.pageIndex;
+    return this.search();
   }
 
   async getFeed(): Promise<void> {
@@ -35,7 +45,7 @@ export class FeedComponent implements OnInit {
     if (typeof slug === 'string') {
       const response = await api.findOne(slug);
       this.feed = response.feeds[0];
-      await this.getItems(this.feed, '', 0, 20);
+      await this.getItems(this.feed, '', this.pageIndex, this.pageSize);
     }
   }
 
@@ -48,7 +58,7 @@ export class FeedComponent implements OnInit {
 
   async search(): Promise<void> {
     if (this.feed) {
-      return this.getItems(this.feed, this.searchToken, 0, 20);
+      return this.getItems(this.feed, this.searchToken, this.pageIndex * this.pageSize, this.pageSize);
     }
   }
 

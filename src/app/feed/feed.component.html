@@ -24,6 +24,7 @@
         <p [innerHTML]="item.content"></p>
       </mat-expansion-panel>
     </mat-accordion>
+    <mat-paginator [length]="count" [pageSize]="pageSize" (page)="paginate($event)"></mat-paginator>
   </div>
 </div>
 
