@@ -10,7 +10,7 @@
   </thead>
   <tbody>
   <tr mat-row *ngFor="let feed of feeds">
-    <td mat-cell><a (click)="select(feed)" href="javascript: return false;">{{feed.title}}</a></td>
+    <td mat-cell><a routerLink="/feed/{{feed.slug}}">{{feed.title}}</a></td>
     <td mat-cell>{{feed.url}}</td>
     <td mat-cell>{{feed.lastModified}}</td>
     <td mat-cell>{{feed.nextUpdate}}</td>

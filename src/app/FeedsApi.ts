@@ -1,3 +1,5 @@
+import { query } from '@angular/animations';
+import { findNode } from '@angular/compiler';
 import { Feed } from './Feed';
 
 export class FeedsApi {
@@ -8,14 +10,28 @@ export class FeedsApi {
   }
 
   async list(start: number, limit: number): Promise<FeedResponse> {
-    const feeds: Feed[] = [];
-    let count = 0;
     const request = {
       options: {
         start,
         limit
       }
     };
+    return this.fetchResult(request);
+  }
+    
+  async findOne(slug: string): Promise<FeedResponse> {
+    const request = {
+      query: {
+        slug
+      } 
+    };
+    return this.fetchResult(request);
+  }
+  
+  async fetchResult(request: any): Promise<FeedResponse> {
+    const feeds: Feed[] = [];
+    let count = 0;
+    
     await fetch(`${this.url}/feeds`, {
       referrerPolicy: 'no-referrer',
       method: 'post',
@@ -41,6 +57,7 @@ export class FeedsApi {
     return new FeedResponse(feeds, count);
   }
 }
+
 
 export class FeedResponse {
   constructor(

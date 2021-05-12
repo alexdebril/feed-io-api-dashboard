@@ -24,6 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { LiveComponent } from './live/live.component';
 import {FormsModule} from '@angular/forms';
+import { FeedComponent } from './feed/feed.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {FormsModule} from '@angular/forms';
     NotfoundComponent,
     NavComponent,
     DashboardComponent,
-    LiveComponent
+    LiveComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
