@@ -3,7 +3,6 @@ import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { FeedsApi } from '../FeedsApi';
 import { Feed } from '../Feed';
-import {ItemsApi} from '../ItemsApi';
 import {Item} from '../Item';
 
 @Component({
@@ -38,13 +37,6 @@ export class FeedsComponent implements OnInit {
     const feedResponse = await api.list(start, this.defaultLimit);
     this.feeds = feedResponse.feeds;
     this.buildPager(feedResponse.count);
-  }
-
-  async select(feed: Feed): Promise<void> {
-    this.selectedFeed = feed;
-    const api = new ItemsApi(this.apiUrl);
-    const itemResponse = await api.getFromFeed(feed.slug, 0, this.defaultLimit);
-    this.items = itemResponse.items;
   }
 
   buildPager(count: number): void {

@@ -1,6 +1,6 @@
-import { query } from '@angular/animations';
-import { findNode } from '@angular/compiler';
-import { Feed } from './Feed';
+import {query} from '@angular/animations';
+import {findNode} from '@angular/compiler';
+import {Feed} from './Feed';
 
 export class FeedsApi {
   url: string;
@@ -18,20 +18,20 @@ export class FeedsApi {
     };
     return this.fetchResult(request);
   }
-    
+
   async findOne(slug: string): Promise<FeedResponse> {
     const request = {
       query: {
         slug
-      } 
+      }
     };
     return this.fetchResult(request);
   }
-  
+
   async fetchResult(request: any): Promise<FeedResponse> {
     const feeds: Feed[] = [];
     let count = 0;
-    
+
     await fetch(`${this.url}/feeds`, {
       referrerPolicy: 'no-referrer',
       method: 'post',
@@ -62,5 +62,6 @@ export class FeedsApi {
 export class FeedResponse {
   constructor(
     public feeds: Feed[],
-    public count: number) {}
+    public count: number) {
+  }
 }

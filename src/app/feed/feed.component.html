@@ -1,1 +1,29 @@
-<p>{{ feed.title}}</p>
+<div *ngIf="feed">
+  <p>{{ feed.title}}</p>
+</div>
+<h3>{{count}} items in database</h3>
+
+<div>
+  <div id="search">
+    <form (submit)="search()">
+      <input id="search-token" [(ngModel)]="searchToken" placeholder="search" name="token">
+      <input id="run" type="button" (click)="search()" value="search">
+    </form>
+  </div>
+  <div id="item-list">
+    <mat-accordion *ngFor="let item of items" style="width: 95%;">
+      <mat-expansion-panel (afterExpand)="display(item)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.title}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{item.feed.title}} {{item.lastModified}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p [innerHTML]="item.content"></p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+

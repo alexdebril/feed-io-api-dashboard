@@ -14,24 +14,47 @@ import {Item} from '../Item';
 export class FeedComponent implements OnInit {
 
   apiUrl: string;
-  feed: Feed;
+  count: number;
+  searchToken: string;
+  feed: Feed | undefined;
+  items: Item[] = [];
 
   constructor(private route: ActivatedRoute) {
     this.apiUrl = environment.urlApi;
-    this.feed = new Feed('', '', '', undefined, undefined, undefined, undefined);
+    this.count = 0;
+    this.searchToken = '';
   }
 
-  ngOnInit(): void {
-    this.getResults();
+  async ngOnInit(): Promise<void> {
+    await this.getFeed();
   }
 
-  async getResults(): Promise<void> {
+  async getFeed(): Promise<void> {
     const api = new FeedsApi(this.apiUrl);
     const slug = this.route.snapshot.paramMap.get('slug');
     if (typeof slug === 'string') {
       const response = await api.findOne(slug);
       this.feed = response.feeds[0];
+      await this.getItems(this.feed, '', 0, 20);
     }
+  }
+
+  async getItems(feed: Feed, search: string, start: number, limit: number): Promise<void> {
+    const api = new ItemsApi(this.apiUrl);
+    const response = await api.getFromFeed(feed.slug, search, start, limit);
+    this.items = response.items;
+    this.count = response.count;
+  }
+
+  async search(): Promise<void> {
+    if (this.feed) {
+      return this.getItems(this.feed, this.searchToken, 0, 20);
+    }
+  }
+
+  async display(item: Item): Promise<void> {
+    const api = new ItemsApi(this.apiUrl);
+    await api.getContent(item);
   }
 
 }
