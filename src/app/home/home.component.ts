@@ -15,16 +15,12 @@ export class HomeComponent implements OnInit {
   count: number;
   searchToken: string;
   language: string;
-  content: string;
-  rowHeight: number;
 
   constructor() {
     this.apiUrl = environment.urlApi;
     this.count = 0;
     this.searchToken = '';
-    this.content = '';
     this.language = 'en';
-    this.rowHeight = 100;
   }
 
   async ngOnInit(): Promise<void> {
@@ -41,9 +37,9 @@ export class HomeComponent implements OnInit {
     this.count = itemResponse.count;
   }
 
-  async displayItem(item: Item): Promise<void> {
+  async display(item: Item): Promise<void> {
     const api = new ItemsApi(this.apiUrl);
-    this.content = await api.getContent(item);
+    await api.getContent(item);
   }
 
 }

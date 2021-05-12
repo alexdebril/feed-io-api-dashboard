@@ -87,7 +87,7 @@ export class ItemsApi {
       return value.json();
     }).then(json => {
       if (json.data.item != null) {
-        content = json.data.item.content;
+        item.content = json.data.item.content;
         console.log(json.data.item);
       }
     });

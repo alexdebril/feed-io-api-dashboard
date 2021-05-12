@@ -1,6 +1,6 @@
 <h3>{{count}} items in database</h3>
 
-<div class="grid-container">
+<div>
   <div id="search">
     <form (submit)="search()">
       <select [(ngModel)]="language" name="lang">
@@ -11,19 +11,19 @@
       <input id="run" type="button" (click)="search()" value="search">
     </form>
   </div>
-  <mat-grid-list cols="2">
-    <mat-grid-tile colspan="1">
-      <div *ngFor="let item of items" style="width: 95%;">
-        <h5 (click)="displayItem(item)">
-          {{item.title}}
-        </h5>
-        <h6>
-          {{item.feed.title}} {{item.lastModified}}
-        </h6>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="1">
-      <p [innerHTML]="content"></p>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div id="item-list">
+    <mat-accordion *ngFor="let item of items" style="width: 95%;">
+      <mat-expansion-panel (afterExpand)="display(item)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.title}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{item.feed.title}} {{item.lastModified}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p [innerHTML]="item.content"></p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>  
 </div>
