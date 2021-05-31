@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  urlWebsocket: '//api.debril.ovh/ws',
-  urlApi: '//api.debril.ovh',
+  urlWebsocket: 'http://api.debril.ovh/ws',
+  urlApi: 'http://api.debril.ovh',
 };
