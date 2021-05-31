@@ -10,7 +10,7 @@ import {NotfoundComponent} from './notfound/notfound.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   { path: 'live', component: ItemsComponent },
-  { path: 'feeds/:page', component: FeedsComponent },
+  { path: 'feeds', component: FeedsComponent },
   { path: 'feed/:slug', component: FeedComponent },
   { path: 'results/:slug', component: ResultsComponent},
   {path: '**', component: NotfoundComponent},

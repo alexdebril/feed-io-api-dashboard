@@ -32,10 +32,11 @@ export class ItemsApi {
     return this.fetchResult(request);
   }
 
-  async getFromFeed(slug: string, start: number, limit: number): Promise<ItemResponse> {
+  async getFromFeed(slug: string, search: string, start: number, limit: number): Promise<ItemResponse> {
     const request = {
       query: {
-        slug
+        slug,
+        content: search
       },
       options: {
         start,

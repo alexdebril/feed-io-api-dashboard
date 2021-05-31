@@ -12,18 +12,23 @@
     </form>
   </div>
   <div id="item-list">
-    <mat-accordion *ngFor="let item of items" style="width: 95%;">
-      <mat-expansion-panel (afterExpand)="display(item)">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{item.title}}
-          </mat-panel-title>
-          <mat-panel-description>
-            {{item.feed.title}} {{item.lastModified}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <p [innerHTML]="item.content"></p>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div>  
+    <div class="item" *ngFor="let item of items">
+      <mat-accordion>
+        <mat-expansion-panel (afterExpand)="display(item)">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="item-title">
+              {{item.title}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <span class="item-description">{{item.feed.title}} {{item.lastModified}}</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p [innerHTML]="item.content"></p>
+          <p><a routerLink="/feed/{{item.feed.slug}}">{{item.feed.title}}</a> | <a href="{{item.link}}">read article</a></p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <mat-paginator [length]="count" [pageSize]="pageSize" (page)="paginate($event)"></mat-paginator>
+  </div>
 </div>

@@ -25,6 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LiveComponent } from './live/live.component';
 import {FormsModule} from '@angular/forms';
 import { FeedComponent } from './feed/feed.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { FeedComponent } from './feed/feed.component';
     MatCardModule,
     MatMenuModule,
     FormsModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

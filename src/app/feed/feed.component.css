@@ -1,0 +1,16 @@
+.item {
+  margin-top: 15px;
+  text-align: justify;
+}
+
+.item-title {
+  font-weight: bold;
+}
+
+.item-description {
+  font-style: italic;
+  font-size: small;
+  margin-left: auto;
+  margin-right: 0px;
+  text-align: right;
+}
