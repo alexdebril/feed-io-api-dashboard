@@ -3,32 +3,31 @@ import { Subscriber } from './subscriber';
 
 export class ItemReader {
     url: string;
-    evtSource!: EventSource;
+    socket!: WebSocket;
     constructor(url: string) {
         this.url = url;
     }
 
     connect(): void {
-        this.evtSource = new EventSource(this.url);
-        this.evtSource.onopen = status => {
-            console.log(status);
+        this.socket = new WebSocket(this.url);
+        this.socket.onopen = status => {
+          console.log(status);
         };
-        this.evtSource.onerror = status => {
+        this.socket.onerror = status => {
             console.log('error detected');
             console.log(status);
         };
     }
 
     listen(subscriber: Subscriber): void {
-        this.evtSource.addEventListener('item', (event: Event) => {
-            if (event instanceof MessageEvent) {
-                console.log('new item');
-                console.log(event.data);
-                const jsonItem = JSON.parse(event.data);
-                const item = new LiveItem(jsonItem.title, jsonItem.url, jsonItem.feed_name, jsonItem.feed_slug, jsonItem.fetched_time);
-                subscriber.notify(item);
-            }
-          });
+        this.socket.onmessage = evt => {
+          if (evt instanceof MessageEvent) {
+            console.log('new item');
+            console.log(evt.data);
+            const jsonItem = JSON.parse(evt.data);
+            const item = new LiveItem(jsonItem.title, jsonItem.url, jsonItem.feed_name, jsonItem.feed_slug, jsonItem.fetched_time);
+            subscriber.notify(item);
+          }
+        };
     }
-
 }

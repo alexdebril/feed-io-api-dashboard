@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlWebsocket: '//ws.localhost',
+  urlWebsocket: 'ws://api.debril.ovh/ws',
   urlApi: '//api.localhost',
 };
 
