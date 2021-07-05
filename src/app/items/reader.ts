@@ -11,7 +11,7 @@ export class ItemReader {
     connect(): void {
         this.socket = new WebSocket(this.url);
         this.socket.onopen = status => {
-          this.socket.send("")
+          this.socket.send('');
           console.log(status);
         };
         this.socket.onerror = status => {
@@ -29,7 +29,7 @@ export class ItemReader {
             const item = new LiveItem(jsonItem.title, jsonItem.url, jsonItem.feed_name, jsonItem.feed_slug, jsonItem.fetched_time);
             subscriber.notify(item);
           }
-          this.socket.send("")
+          this.socket.send('');
         };
     }
 }
